@@ -1,23 +1,38 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+import TodoForm from './components/TodoForm';
 
 function App() {
+  
+  const todos = [
+    { id: 1, title: "React verstehen"   },
+    { id: 2, title: "das Leben verstehen"   },
+    { id: 3, title: "weinen"   },
+    { id: 4, title: "die große Liebe finden"   },
+    { id: 5, title: "nett sein"   },
+    { id: 6, title: "in der Schule spicken"   },
+  ]
+
+  const [todoList, setTodoList] = useState(todos);
+  console.log(todoList);
+
+  function addTodo(newTodo){
+    setTodoList([newTodo, ...todoList]);
+  }
+
+  const countTodos = todoList.length;
+
+  function TodoItem({title}){
+     return <li><input type="checkbox"/>{title}</li>
+  }
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>Todo App</h1>
+      <TodoForm onAddTodo={addTodo} count={countTodos}/>
+      <ul>
+        {todoList.map((todo) => <TodoItem key={todo.id}  title={todo.title}/>)}
+      </ul>
     </div>
   );
 }
