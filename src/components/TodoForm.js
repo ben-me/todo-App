@@ -1,6 +1,7 @@
+import { nanoid } from 'nanoid';
 import './todoForm.css';
 
-export default function TodoForm({count, onAddTodo}) {
+export default function TodoForm({onAddTodo}) {
     
 
 function handleClick(event){
@@ -10,7 +11,7 @@ function handleClick(event){
     const inputValue = form.title.value;
 
     const newTodo = {
-        id: count + 1,
+        id: nanoid(),
         title: inputValue,
     }
     onAddTodo(newTodo);

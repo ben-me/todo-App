@@ -20,8 +20,6 @@ function App() {
     setTodoList([newTodo, ...todoList]);
   }
 
-  const countTodos = todoList.length;
-
   function TodoItem({title}){
      return <li><input type="checkbox"/>{title}</li>
   }
@@ -29,7 +27,7 @@ function App() {
   return (
     <div>
       <h1>Todo App</h1>
-      <TodoForm onAddTodo={addTodo} count={countTodos}/>
+      <TodoForm onAddTodo={addTodo} />
       <ul>
         {todoList.map((todo) => <TodoItem key={todo.id}  title={todo.title}/>)}
       </ul>
