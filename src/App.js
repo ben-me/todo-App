@@ -17,20 +17,20 @@ function App() {
   const [todoList, setTodoList] = useState(loadFromStorage() || todos);
 
   function loadFromStorage() {
-    JSON.parse(localStorage.getItem('_todos'))
+    return JSON.parse(localStorage.getItem('_todos'))
   }
 
-  console.log(todoList);
   useEffect(() => {
     localStorage.setItem('_todos', JSON.stringify(todoList))
   }, [todoList])
+
 
   function toggleTodo(id) {
     const updatedToDos = todoList.map((singleTodo) => {
       if (singleTodo.id === id) {
         singleTodo.isDone = !singleTodo.isDone;
       }
-      console.log(singleTodo.isDone)
+      console.log(singleTodo)
       return singleTodo;
     })
     setTodoList(updatedToDos);

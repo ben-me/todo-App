@@ -13,6 +13,7 @@ function handleClick(event){
     const newTodo = {
         id: nanoid(),
         title: inputValue,
+        isDone: false,
     }
     onAddTodo(newTodo);
     form.reset();
